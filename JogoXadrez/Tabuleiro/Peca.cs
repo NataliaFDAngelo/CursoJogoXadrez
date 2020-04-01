@@ -13,7 +13,7 @@
             this.posicao = null;
             this.tab = tab;
             this.cor = cor;
-            this.qteMovimentos = 0; 
+            this.qteMovimentos = 0;
         }
 
         public void incrementarQteMoviemntos()
@@ -21,8 +21,28 @@
             qteMovimentos++;
         }
 
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = movimentoPossivel();
+            for (int i = 0; i < tab.linhas; i++)
+            {
+                for (int j = 0; j < tab.colunas; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movimentoPossivel()[pos.linha, pos.coluna];
+        }
+
         public abstract bool[,] movimentoPossivel();
-
-
     }
 }
