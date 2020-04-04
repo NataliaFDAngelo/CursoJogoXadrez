@@ -16,12 +16,12 @@
             this.qteMovimentos = 0;
         }
 
-        public void incrementarQteMoviemntos()
+        public void incrementarQteMovimentos()
         {
             qteMovimentos++;
         }
 
-        public void decrementarQteMoviemntos()
+        public void decrementarQteMovimentos()
         {
             qteMovimentos--;
         }
