@@ -7,7 +7,7 @@ namespace JogoXadrez
 {
     class Tela
     {
-        public  static void imprimirPartida(PartidaDeXadrez partida)
+        public static void imprimirPartida(PartidaDeXadrez partida)
         {
             imprimirTabuleiro(partida.tab);
             Console.WriteLine();
@@ -46,7 +46,7 @@ namespace JogoXadrez
         public static void imprimirConjunto(HashSet<Peca> conjunto)
         {
             Console.Write("[");
-            foreach(Peca x in conjunto)
+            foreach (Peca x in conjunto)
             {
                 Console.Write(x + " ");
             }
@@ -56,18 +56,39 @@ namespace JogoXadrez
 
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
+
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor corOriginal = Console.ForegroundColor;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("  a b c d e f g h   ");
+            Console.BackgroundColor = fundoOriginal;
+            Console.ForegroundColor = corOriginal;
+
+
             for (int i = 0; i < tab.linhas; i++)
             {
+                Console.BackgroundColor = ConsoleColor.DarkCyan;
                 Console.Write(8 - i + " ");
+                Console.BackgroundColor = fundoOriginal;
+
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     imprimirPeca(tab.peca(i, j));
+
                 }
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write(" " + (8 - i));
+                Console.BackgroundColor = fundoOriginal;
+                Console.ForegroundColor = corOriginal;
 
                 Console.WriteLine();
             }
 
-            Console.WriteLine("  a b c d e f g h");
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("  a b c d e f g h   ");
+            Console.BackgroundColor = fundoOriginal;
         }
 
         public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoePossiveis)
@@ -75,9 +96,15 @@ namespace JogoXadrez
             ConsoleColor fundoOriginal = Console.BackgroundColor;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
 
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("  a b c d e f g h   ");
+            Console.BackgroundColor = fundoOriginal;
+
             for (int i = 0; i < tab.linhas; i++)
             {
+                Console.BackgroundColor = ConsoleColor.DarkCyan;
                 Console.Write(8 - i + " ");
+                Console.BackgroundColor = fundoOriginal;
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     if (posicoePossiveis[i, j])
@@ -92,11 +119,14 @@ namespace JogoXadrez
                     imprimirPeca(tab.peca(i, j));
                     Console.BackgroundColor = fundoOriginal;
                 }
+                Console.BackgroundColor = ConsoleColor.DarkCyan;
+                Console.Write(8 - i + " ");
+                Console.BackgroundColor = fundoOriginal;
 
                 Console.WriteLine();
             }
-
-            Console.WriteLine("  a b c d e f g h");
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("  a b c d e f g h   ");
             Console.BackgroundColor = fundoOriginal;
         }
 
@@ -123,7 +153,7 @@ namespace JogoXadrez
                 else
                 {
                     ConsoleColor aux = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.Write(peca);
                     Console.ForegroundColor = aux;
                 }
